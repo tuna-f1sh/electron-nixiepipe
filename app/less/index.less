@@ -1,0 +1,197 @@
+@import "variables.less";
+@import "mixins.less";
+//
+// Global Components
+
+html,
+body {
+    background: @gray-lighter;
+    width: 800px;
+    height: 400px;
+    overflow: hidden;
+    // -webkit-app-region: drag;
+    // -webkit-user-select: none;
+}
+
+body {
+    .serif-font;
+}
+
+hr {
+    border-color: @theme-primary;
+    border-width: 3px;
+    max-width: 50px;
+}
+
+hr.light {
+    border-color: white;
+}
+
+a {
+    .transition-all;
+    color: @theme-primary;
+    &:hover,
+    &:focus {
+        color: darken(@theme-primary, 10%);
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    .sans-serif-font;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.bg-primary {
+    background-color: @theme-primary;
+}
+
+.bg-dark {
+    background-color: @gray-darker;
+    color: white;
+}
+
+.text-faded {
+    color: fade(white, 70%);
+}
+
+section {
+    padding: 100px 0;
+}
+
+aside {
+    padding: 50px 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+// Bootstrap Overrides
+.text-primary {
+    color: @theme-primary;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
+
+// Button Styles
+.btn-default {
+    .button-variant(@gray-darker;white;white);
+}
+
+.btn-primary {
+    .button-variant(white;@theme-primary;@theme-primary);
+}
+
+.btn {
+    .sans-serif-font;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.btn-xl {
+    padding: 15px 30px;
+}
+
+// Extras
+// -- Highlight Color Customization
+::-moz-selection {
+    color: white;
+    text-shadow: none;
+    background: @gray-darker;
+}
+
+::selection {
+    color: white;
+    text-shadow: none;
+    background: @gray-darker;
+}
+
+img::selection {
+    color: white;
+    background: transparent;
+}
+
+img::-moz-selection {
+    color: white;
+    background: transparent;
+}
+
+body {
+    webkit-tap-highlight-color: @gray-darker;
+}
+
+////////////////////
+//
+.padding-top {
+  padding-top: 20px;
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+.fill {
+  height: 100%;
+}
+
+/* Animate loading display*/
+
+#refresh-connect {
+  // display: none;
+  // padding-left: 10px;
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+.pipe-outline {
+  position: relative;
+  height: 200px;
+  // background-image: url("../img/pipe-outline.png");
+  // background-repeat: no-repeat;
+  // background-position: center center;
+  // background-attachment: fixed;
+  // -webkit-background-size: cover;
+  // -moz-background-size: cover;
+  // -o-background-size: cover;
+  // background-size: cover;
+  // height: 167px;
+}
+
+.pipe-outline h1 {
+  position: inherit;
+  top: -180px;
+  font-size: 84px
+}
+
+.Scp {
+  margin-left: 10px;
+  border: 2px solid @theme-primary;
+}

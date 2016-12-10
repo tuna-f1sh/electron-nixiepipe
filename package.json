@@ -1,0 +1,21 @@
+{
+  "name": "nixie-gui",
+  "version": "1.0.0",
+  "description": "Nixie Pipe Electron app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John Whittington <node@jbrengineering.co.uk> (http://jbrengineering.co.uk)",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "nixiepipe": "file:///Users/John/Projects/JBR-Engineering/nixie-pipe/supporting/node-nixiepipe",
+    "serialport": "^4.0.6",
+    "simple-color-picker": "^0.1.1"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.4.0",
+    "nixiepipe": "file:///Users/John/Projects/JBR-Engineering/nixie-pipe/supporting/node-nixiepipe"
+  }
+}

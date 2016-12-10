@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Nixie Pipe Controller</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/simple-color-picker.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+
+  </head>
+  <body>
+
+    <div class='container-fluid fill'>
+      <div class='row fill'>
+        <div class='col-xs-3 bg-dark text-center fill padding-top'>
+          <img src='img/np-logo-wht.png' class="img-responsive"/>
+          <button type="buttons" class="btn margin-top" id="connect" onclick="connectPress();">Connect</button>
+          <!-- <br/>-->
+          <!-- <button type="buttons" class="btn margin-top" id="update" onclick="updatePress();">Update</button>-->
+          <br/>
+          <div class='row margin-top'>
+            <div class='col-xs-12'>
+              <p><span class="glyphicon glyphicon-refresh" id='refresh-connect'></span></p>
+            </div>
+          </div>
+        </div>
+        <div class='col-xs-9 fill padding-top'>
+          <div class='row'>
+            <div class='col-xs-3 pipe-outline text-center'>
+              <img class='img-responsive' src='img/pipe-outline.png'/>
+              <h1 class='pipe-h1' id='pipe3'>0</h1>
+            </div>
+            <div class='col-xs-3 pipe-outline text-center'>
+              <img class='img-responsive' src='img/pipe-outline.png'/>
+              <h1 class='pipe-h1' id='pipe2'>0</h1>
+            </div>
+            <div class='col-xs-3 pipe-outline text-center'>
+              <img class='img-responsive' src='img/pipe-outline.png'/>
+              <h1 class='pipe-h1' id='pipe1'>0</h1>
+            </div>
+            <div class='col-xs-3 pipe-outline text-center'>
+              <img class='img-responsive' src='img/pipe-outline.png'/>
+              <h1 class='pipe-h1' id='pipe0'>0</h1>
+            </div>
+          </div>
+          <div class='row'>
+            <div class='col-xs-3 text-center'>
+              <button type="buttons" class="btn btn-primary btn-sm pipe-down"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+              <button type="buttons" class="btn btn-primary btn-sm pipe-up"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+            </div>
+            <div class='col-xs-3 text-center'>
+              <button type="buttons" class="btn btn-primary btn-sm pipe-down"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+              <button type="buttons" class="btn btn-primary btn-sm pipe-up"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+            </div>
+            <div class='col-xs-3 text-center'>
+              <button type="buttons" class="btn btn-primary btn-sm pipe-down"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+              <button type="buttons" class="btn btn-primary btn-sm pipe-up"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+            </div>
+            <div class='col-xs-3 text-center'>
+              <button type="buttons" class="btn btn-primary btn-sm pipe-down"><span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></button>
+              <button type="buttons" class="btn btn-primary btn-sm pipe-up"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></button>
+            </div>
+          </div>
+          <div class='row padding-top'>
+            <div id="cp3" class='col-xs-3 text-center colour-picker'>
+            </div>
+            <div id="cp2" class='col-xs-3 text-center colour-picker'>
+            </div>
+            <div id="cp1" class='col-xs-3 text-center colour-picker'>
+            </div>
+            <div id="cp0" class='col-xs-3 text-center colour-picker'>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script src="js/index.js"></script>
+
+  </body>
+</html>
