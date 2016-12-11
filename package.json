@@ -9,13 +9,14 @@
   "author": "John Whittington <node@jbrengineering.co.uk> (http://jbrengineering.co.uk)",
   "license": "GPL-3.0",
   "dependencies": {
+    "forecast": "^0.3.2",
     "jquery": "^3.1.1",
-    "nixiepipe": "file:///Users/John/Projects/JBR-Engineering/nixie-pipe/supporting/node-nixiepipe",
+    "nixiepipe": "git+https://github.com/tuna-f1sh/node-nixiepipe.git",
     "serialport": "^4.0.6",
-    "simple-color-picker": "^0.1.1"
+    "simple-color-picker": "^0.1.1",
+    "yahoo-finance": "^0.2.16"
   },
   "devDependencies": {
-    "electron-rebuild": "^1.4.0",
-    "nixiepipe": "file:///Users/John/Projects/JBR-Engineering/nixie-pipe/supporting/node-nixiepipe"
+    "electron-rebuild": "^1.4.0"
   }
 }

@@ -10,7 +10,11 @@
     <link href="css/simple-color-picker.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
 
-    <script src="js/jquery-3.1.1.min.js"></script>
+    <!-- <script src="js/jquery-3.1.1.min.js"></script>-->
+    <script>
+      window.jQuery = window.$ = require('jquery');
+    </script>
+    <script src="js/bootstrap.min.js"></script>
 
   </head>
   <body>
@@ -27,9 +31,15 @@
             <div class='col-xs-12'>
               <p><span class="glyphicon glyphicon-refresh" id='refresh-connect'></span></p>
             </div>
+            <div class='col-xs-12'>
+              <div class="alert alert-danger error-msg text-left">
+                <strong>Error:</strong></br><span id="error-msg"></span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class='col-xs-9 fill padding-top'>
+        <div class='col-xs-9 fill padding-top pipe-control-panel'>
+        <div id="darkLayer" class="darkClass" style="display:inherit"></div>
           <div class='row'>
             <div class='col-xs-3 pipe-outline text-center'>
               <img class='img-responsive' src='img/pipe-outline.png'/>
@@ -74,6 +84,25 @@
             <div id="cp1" class='col-xs-3 text-center colour-picker'>
             </div>
             <div id="cp0" class='col-xs-3 text-center colour-picker'>
+            </div>
+          </div>
+          <div class='row fill padding-top function-panel'>
+            <div class='col-xs-12'>
+              <div class='row text-center'>
+              <div class='col-xs-3'>
+                <button type="buttons" class="btn btn-primary pipe-functions" id="cycle" onclick="runCounter();">Counter</button>
+              </div>
+              <div class='col-xs-3'>
+                <button type="buttons" class="btn btn-primary pipe-functions" id="cdown" onclick="countDown();">Countdown</button>
+              </div>
+              <div class='col-xs-3'>
+                <button type="buttons" class="btn btn-primary pipe-functions" id="clock" onclick="clock();">Clock</button>
+              </div>
+              <div class='col-xs-3'>
+                <button type="buttons" class="btn btn-primary pipe-functions" id="ticker" onclick="stockTicker();">Ticker</button>
+                <input type="symbol" class="form-control" id="stock-symbol" placeholder="Stock symbol" value="^FTSE">
+              </div>
+              </div>
             </div>
           </div>
         </div>

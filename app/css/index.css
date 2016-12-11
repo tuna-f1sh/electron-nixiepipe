@@ -2,8 +2,10 @@ html,
 body {
   background: #eeeeee;
   width: 800px;
-  height: 400px;
+  height: 500px;
   overflow: hidden;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
 }
 body {
   font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
@@ -201,6 +203,34 @@ body {
 .fill {
   height: 100%;
 }
+.pipe-control-panel {
+  position: relative;
+}
+.function-panel {
+  background-color: #777777;
+  margin-top: 20px;
+  border-top: 2px solid #ffb84d;
+}
+.darkClass {
+  background-color: #777777;
+  filter: alpha(opacity=50);
+  /* IE */
+  opacity: 0.5;
+  /* Safari, Opera */
+  -moz-opacity: 0.50;
+  /* FireFox */
+  z-index: 20;
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.error-msg {
+  display: none;
+}
 /* Animate loading display*/
 .glyphicon-refresh-animate {
   -animation: spin .7s infinite linear;
@@ -234,4 +264,7 @@ body {
 .Scp {
   margin-left: 10px;
   border: 2px solid #ffb84d;
+}
+#stock-symbol {
+  margin-top: 10px;
 }

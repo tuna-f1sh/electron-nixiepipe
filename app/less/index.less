@@ -7,10 +7,10 @@ html,
 body {
     background: @gray-lighter;
     width: 800px;
-    height: 400px;
+    height: 500px;
     overflow: hidden;
-    // -webkit-app-region: drag;
-    // -webkit-user-select: none;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
 }
 
 body {
@@ -149,6 +149,36 @@ body {
   height: 100%;
 }
 
+.pipe-control-panel {
+  position: relative;
+}
+
+.function-panel {
+  background-color: @gray-light;
+  margin-top: 20px;
+  border-top: 2px solid @theme-primary;
+}
+
+.darkClass
+{
+    background-color: @gray-light;
+    filter:alpha(opacity=50); /* IE */
+    opacity: 0.5; /* Safari, Opera */
+    -moz-opacity:0.50; /* FireFox */
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.error-msg {
+  display: none;
+}
+
 /* Animate loading display*/
 
 #refresh-connect {
@@ -194,4 +224,8 @@ body {
 .Scp {
   margin-left: 10px;
   border: 2px solid @theme-primary;
+}
+
+#stock-symbol {
+  margin-top: 10px;
 }

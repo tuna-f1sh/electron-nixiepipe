@@ -1,7 +1,15 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, dialog, ipcMain} = require('electron')
 const path = require('path')
 const url = require('url')
-const {ipcMain} = require('electron')
+// const {ipcMain} = require('electron')
+
+const powerSaveBlocker = require('electron').powerSaveBlocker;
+
+// Maintain tick rate even when backgrounded
+app.commandLine.appendSwitch('page-visibility');
+app.commandLine.appendSwitch("disable-renderer-backgrounding");
+app.commandLine.appendSwitch("disable-background-timer-throttling");
+powerSaveBlocker.start('prevent-app-suspension');
 
 const nixie = require('nixiepipe')
 
@@ -15,8 +23,8 @@ function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
     width: 800, 
-    height: 400,
-    resizable: false
+    height: 500,
+    resizable: true
   })
 
   // and load the index.html of the app.
@@ -27,7 +35,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -35,6 +43,11 @@ function createWindow () {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     win = null
+    if ( (typeof pipes !== "undefined") ) {
+      pipes.close( function() {
+        pipes = null;
+      });
+    }
   })
 }
 
@@ -64,7 +77,7 @@ app.on('activate', () => {
 // code. You can also put them in separate files and require them here.
 
 ipcMain.on('connect-click', (event) => {
-  if ( (typeof pipes === "undefined") || (pipes.connected = false) ) {
+  if ( (typeof pipes === "undefined") || (pipes === null) ) {
     pipes = new nixie()
 
     pipes.once("connected", () => {
@@ -75,6 +88,14 @@ ipcMain.on('connect-click', (event) => {
 
     pipes.once("disconnect", () => {
       event.sender.send("disconnect");
+      pipes = null;
+    });
+
+    pipes.on("error", (error) => {
+      event.sender.send("error", error.message);
+      // dialog.showErrorBox("Nixie Pipe error", error)
+      console.log(error.message)
+      pipes = null;
     });
 
     pipes.on("busy", () => {
@@ -85,18 +106,28 @@ ipcMain.on('connect-click', (event) => {
       event.sender.send("free");
     })
   } else {
-    pipes = new nixie()
-
     event.sender.send('connected', pipes.version)
   }
 })
 
 ipcMain.on('number-update', (event, pipe, number) => {
-  pipes.setPipeNumber(pipe, number);
+  // less than zero is for array setting
+  if (pipe < 0) {
+    pipes.setNumber(number);
+  } else {
+    pipes.setPipeNumber(pipe, number);
+  }
+
   pipes.show();
 })
 
-ipcMain.on('color-update', (event, pipe, rgb) => {
-  pipes.setPipeColour(pipe, rgb.r, rgb.g, rgb.b);
+ipcMain.on('colour-update', (event, pipe, rgb) => {
+  // less than zero is for array setting
+  if (pipe < 0) {
+    pipes.setColour(rgb.r, rgb.g, rgb.b);
+  } else {
+    pipes.setPipeColour(pipe, rgb.r, rgb.g, rgb.b);
+  }
+
   pipes.show();
 })
