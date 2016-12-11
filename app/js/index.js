@@ -5,10 +5,10 @@ window.$ = window.jQuery = require('jquery');
 var Forecast = require('forecast');
 var yahooFinance = require('yahoo-finance');
 
-var colourdivs = document.querySelectorAll('.colour-picker')
-var pipeh1 = $('.pipe-h1')
-var pipeButtonUp = $('.pipe-up')
-var pipeButtonDown = $('.pipe-down')
+var colourdivs = $('.colour-picker').get().reverse()
+var pipeh1 = $('.pipe-h1').get().reverse()
+var pipeButtonUp = $('.pipe-up').get().reverse()
+var pipeButtonDown = $('.pipe-down').get().reverse()
 var pipeFuncButtons = $('.pipe-functions')
 let colourpickers = []
 
