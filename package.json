@@ -1,22 +1,31 @@
 {
   "name": "nixie-gui",
+  "productName": "Nixie Pipe Controller",
   "version": "1.0.0",
   "description": "Nixie Pipe Electron app",
   "main": "main.js",
+  "homepage": "http://www.nixiepipe.com",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-packager . --out=./release --all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tuna-f1sh/electron-nixiepipe.git"
   },
   "author": "John Whittington <node@jbrengineering.co.uk> (http://jbrengineering.co.uk)",
   "license": "GPL-3.0",
   "dependencies": {
     "forecast": "^0.3.2",
     "jquery": "^3.1.1",
-    "nixiepipe": "git+https://github.com/tuna-f1sh/node-nixiepipe.git",
+    "nixiepipe": "^1.0.0",
     "serialport": "^4.0.6",
     "simple-color-picker": "^0.1.1",
     "yahoo-finance": "^0.2.16"
   },
   "devDependencies": {
-    "electron-rebuild": "^1.4.0"
+    "electron-packager": "^8.4.0",
+    "electron-rebuild": "^1.4.0",
+    "npm-packager": "0.0.2"
   }
 }
