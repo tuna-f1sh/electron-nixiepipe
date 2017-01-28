@@ -2,9 +2,15 @@ const {ipcRenderer} = require('electron')
 const ColorPicker = require('simple-color-picker');
 window.$ = window.jQuery = require('jquery');
 
+// API tools
 var Forecast = require('forecast');
 var yahooFinance = require('yahoo-finance');
+var os  = require('os-utils');
+var NodeGeocoder = require('node-geocoder');
+// API keys in .env file
+require('dotenv').config()
 
+// setup active GUI stuff
 var colourdivs = $('.colour-picker').get().reverse()
 var pipeh1 = $('.pipe-h1').get().reverse()
 var pipeButtonUp = $('.pipe-up').get().reverse()
@@ -14,18 +20,31 @@ let colourpickers = []
 
 var cycleTask = null
 
-// Initialize
-// var forecast = new Forecast({
-//   service: 'darksky',
-//   key: '4d998b0ebffb98ba2ea2ebd826a31da6',
-//   units: 'celcius',
-//   cache: true,      // Cache API requests
-//   ttl: {            // How long to cache requests. Uses syntax from moment.js: http://momentjs.com/docs/#/durations/creating/
-//     minutes: 30,
-//     seconds: 0
-//   }
-// });
+// Initialize forcast
+var forecast = new Forecast({
+  service: 'darksky',
+  key: process.env.DARKSKY_API,
+  units: 'celcius',
+  cache: true,      // Cache API requests
+  ttl: {            // How long to cache requests. Uses syntax from moment.js: http://momentjs.com/docs/#/durations/creating/
+    minutes: 60,
+    seconds: 0
+  }
+});
 
+// Geocoder setup for lon/lat from location
+var options = {
+  provider: 'google',
+
+  // Optional depending on the providers
+  httpAdapter: 'https', // Default
+  apiKey: process.env.GOOGLE_API, // for Mapquest, OpenCage, Google Premier
+  formatter: null         // 'gpx', 'string', ...
+};
+
+var geocoder = NodeGeocoder(options);
+
+// do all this on window load (script loaded at end anyway but might as well be sure)
 window.onload = function windowLoad() {
 
   for (var i = 0; i < colourdivs.length; i++ ) {
@@ -285,6 +304,105 @@ function stockTicker() {
     pipeFuncButtons.prop('disabled', false);
   }
 }
+
+function cpu() {
+  var id = $("#cpu")
+
+  var displayCpu = () => {
+    os.cpuUsage(function(v){
+        v *= 100;
+        // console.log( 'CPU Usage (%): ' + v );
+        ipcRenderer.send('number-update', -1, v);
+        setPipeh1(v)
+    });
+  }
+  
+  // first press, start clock
+  if (cycleTask === null) {
+    pipeFuncButtons.prop('disabled', true);
+
+    id.css('color',"red")
+    id.text("stop")
+    id.prop('disabled', false);
+
+    displayCpu()
+
+    // update the display using timer every 1s
+    cycleTask = setInterval( function() {
+      displayCpu();
+    }, 1000)
+
+  // second press, stop clock
+  } else {
+    clearInterval(cycleTask)
+    cycleTask = null
+    id.removeAttr('style');
+    id.text("Cpu")
+    pipeFuncButtons.prop('disabled', false);
+  }
+}
+
+function weather() {
+  var id = $("#weather")
+
+  var city = $('#lon').val()
+
+  var lon;
+  var lat;
+
+  var displayWeather = () => {
+    forecast.get([lat, lon], function(err, weather) {
+      // display celius
+      ipcRenderer.send('number-update', -1, Math.abs(weather.currently.temperature));
+      // display negagtive as blue
+      if (weather.currently.temperature < 0)
+        ipcRenderer.send('colour-update', -1, {'r': 0, 'g': 0, 'b': 255} ) ;
+      // show on GUI display
+      setPipeh1(Math.abs(weather.currently.temperature))
+    });
+  }
+
+  
+  // first press, start clock
+  if (cycleTask === null) {
+    pipeFuncButtons.prop('disabled', true);
+    id.css('color',"red")
+    id.text("stop")
+
+    geocoder.geocode(city, function(err, res) {
+      if (err || (typeof res == "undefined")) {
+        // $('#lon').style.background = "red";
+        id.prop('disabled', false);
+      } else {
+        // $('#lon').removeAttr('style');
+        console.log(res);
+        lon = res[0].longitude
+        lat = res[0].latitude;
+
+        // enable stop button
+        id.css('color',"red")
+        id.text("stop")
+        id.prop('disabled', false);
+
+        displayWeather();
+        
+        // update the display using timer every 60s
+        cycleTask = setInterval( function() {
+          displayWeather();
+        }, 60000)
+      }
+    });
+
+  // second press, stop clock
+  } else {
+    clearInterval(cycleTask)
+    cycleTask = null
+    id.removeAttr('style');
+    id.text("Weather")
+    pipeFuncButtons.prop('disabled', false);
+  }
+}
+
 
 ipcRenderer.on('connected', (event,ver) => {
   var button = document.querySelector("#connect")

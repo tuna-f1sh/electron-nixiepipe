@@ -2,7 +2,7 @@ html,
 body {
   background: #eeeeee;
   width: 800px;
-  height: 500px;
+  height: 560px;
   overflow: hidden;
   -webkit-app-region: drag;
   -webkit-user-select: none;
@@ -211,6 +211,9 @@ body {
   margin-top: 20px;
   border-top: 2px solid #ffb84d;
 }
+.function-input {
+  margin-bottom: 10px;
+}
 .darkClass {
   background-color: #777777;
   filter: alpha(opacity=50);
@@ -265,13 +268,10 @@ body {
   margin-left: 10px;
   border: 2px solid #ffb84d;
 }
-#stock-symbol {
-  margin-top: 10px;
-}
 .logo-row {
   position: relative;
 }
 .logo-col {
   position: absolute;
-  bottom: -170px;
+  bottom: -230px;
 }

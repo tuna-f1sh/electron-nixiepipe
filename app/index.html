@@ -95,17 +95,46 @@
             <div class='col-xs-12'>
               <div class='row text-center'>
               <div class='col-xs-3'>
-                <button type="buttons" class="btn btn-primary pipe-functions" id="cycle" onclick="runCounter();">Counter</button>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <button type="buttons" class="btn btn-primary pipe-functions" id="cycle" onclick="runCounter();">Counter</button>
+                  </div>
+                  <div class='col-xs-12 padding-top'>
+                    <button type="buttons" class="btn btn-primary pipe-functions" id="cdown" onclick="countDown();">Countdown</button>
+                  </div>
+                </div>
               </div>
               <div class='col-xs-3'>
-                <button type="buttons" class="btn btn-primary pipe-functions" id="cdown" onclick="countDown();">Countdown</button>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <button type="buttons" class="btn btn-primary pipe-functions" id="weather" onclick="weather();">Weather</button>
+                  </div>
+                  <div class='col-xs-12 form-group padding-top'>
+                    <label>Location</label>
+                    <input type="symbol" class="form-control function-input" id="lon" placeholder="lon" value="Bristol, UK"></label>
+                  </div>
+                </div>
               </div>
               <div class='col-xs-3'>
-                <button type="buttons" class="btn btn-primary pipe-functions" id="clock" onclick="clock();">Clock</button>
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <button type="buttons" class="btn btn-primary pipe-functions" id="clock" onclick="clock();">Clock</button>
+                  </div>
+                  <div class='col-xs-12 padding-top'>
+                    <button type="buttons" class="btn btn-primary pipe-functions" id="cpu" onclick="cpu();">CPU</button>
+                  </div>
+                </div>
               </div>
               <div class='col-xs-3'>
-                <button type="buttons" class="btn btn-primary pipe-functions" id="ticker" onclick="stockTicker();">Ticker</button>
-                <input type="symbol" class="form-control" id="stock-symbol" placeholder="Stock symbol" value="^FTSE">
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <button type="buttons" class="btn btn-primary pipe-functions" id="ticker" onclick="stockTicker();">ticker</button>
+                  </div>
+                  <div class='col-xs-12 form-group padding-top'>
+                    <label class=''>Symbol</label>
+                    <input type="symbol" class="form-control function-input" id="stock-symbol" placeholder="stock symbol" value="^ftse">
+                  </div>
+                </div>
               </div>
               </div>
             </div>

@@ -42,8 +42,10 @@ function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
     width: 800, 
-    height: 500,
-    resizable: false
+    height: 560,
+    resizable: false,
+    maximizable: false,
+    fullscreenable: false
   })
 
   // and load the index.html of the app.
@@ -55,6 +57,7 @@ function createWindow () {
 
   // Open the DevTools.
   // win.webContents.openDevTools()
+  win.setMenu(null);
 
   // Emitted when the window is closed.
   win.on('closed', () => {
