@@ -44,6 +44,19 @@ var options = {
 
 var geocoder = NodeGeocoder(options);
 
+var weatherIcons = {
+  "clear-day" : 0,
+  "clear-night" : 0,
+  "partly-cloudy-day" : 3,
+  "partly-cloudy-night" : 0,
+  "cloudy:" : 2,
+  "rain:" : 1,
+  "sleet:" : 4,
+  "snow:" : 4, 
+  "wind:" : 5,
+  "fog" : 7
+}
+
 // do all this on window load (script loaded at end anyway but might as well be sure)
 window.onload = function windowLoad() {
 
@@ -307,11 +320,14 @@ function stockTicker() {
 
 function cpu() {
   var id = $("#cpu")
+  var units = $("#units-weather").is(':checked');
 
   var displayCpu = () => {
     os.cpuUsage(function(v){
         v *= 100;
         // console.log( 'CPU Usage (%): ' + v );
+        if (units)
+          ipcRenderer.send('number-update',0,8)
         ipcRenderer.send('number-update', -1, v);
         setPipeh1(v)
     });
@@ -320,6 +336,9 @@ function cpu() {
   // first press, start clock
   if (cycleTask === null) {
     pipeFuncButtons.prop('disabled', true);
+
+    // set units so we can display percent symbol if present
+    ipcRenderer.send('set-units', units)
 
     id.css('color',"red")
     id.text("stop")
@@ -334,6 +353,7 @@ function cpu() {
 
   // second press, stop clock
   } else {
+    ipcRenderer.send('set-units', 0)
     clearInterval(cycleTask)
     cycleTask = null
     id.removeAttr('style');
@@ -346,19 +366,25 @@ function weather() {
   var id = $("#weather")
 
   var city = $('#lon').val()
+  var units = $("#units-weather").is(':checked');
 
   var lon;
   var lat;
 
   var displayWeather = () => {
     forecast.get([lat, lon], function(err, weather) {
-      // display celius
-      ipcRenderer.send('number-update', -1, Math.abs(weather.currently.temperature));
-      // display negagtive as blue
-      if (weather.currently.temperature < 0)
-        ipcRenderer.send('colour-update', -1, {'r': 0, 'g': 0, 'b': 255} ) ;
-      // show on GUI display
-      setPipeh1(Math.abs(weather.currently.temperature))
+      if (!err) {
+        console.log(weather)
+        // display celius
+        ipcRenderer.send('number-update', -1, Math.abs(weather.currently.temperature));
+        if (units) 
+          ipcRenderer.send('number-update', 0, weatherIcons[weather.currently.icon])
+        // display negagtive as blue
+        if (weather.currently.temperature < 0)
+          ipcRenderer.send('colour-update', -1, {'r': 0, 'g': 0, 'b': 255} ) ;
+        // show on GUI display
+        setPipeh1(Math.abs(weather.currently.temperature))
+      }
     });
   }
 
@@ -368,6 +394,9 @@ function weather() {
     pipeFuncButtons.prop('disabled', true);
     id.css('color',"red")
     id.text("stop")
+    
+    // set units so we can display percent symbol if present
+    ipcRenderer.send('set-units', units)
 
     geocoder.geocode(city, function(err, res) {
       if (err || (typeof res == "undefined")) {
@@ -395,6 +424,7 @@ function weather() {
 
   // second press, stop clock
   } else {
+    ipcRenderer.send('set-units', 0)
     clearInterval(cycleTask)
     cycleTask = null
     id.removeAttr('style');

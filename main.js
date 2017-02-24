@@ -153,3 +153,7 @@ ipcMain.on('colour-update', (event, pipe, rgb) => {
 
   pipes.show();
 })
+
+ipcMain.on('set-units', (event, num_units) => {
+  pipes.setNumberUnits(num_units);
+})

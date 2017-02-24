@@ -22,13 +22,24 @@
     <div class='container-fluid fill'>
       <div class='row fill'>
         <div class='col-xs-3 bg-dark text-center fill padding-top'>
-          <img src='img/np-logo-wht.png' class="img-responsive"/>
-          <button type="buttons" class="btn margin-top" id="connect" onclick="connectPress();">Connect</button>
-          <!-- <br/>-->
-          <!-- <button type="buttons" class="btn margin-top" id="update" onclick="updatePress();">Update</button>-->
-          <br/>
-          <div class='row margin-top'>
+          <div class'row'>
             <div class='col-xs-12'>
+              <img src='img/np-logo-wht.png' class="img-responsive"/>
+            </div>
+            <div class='col-xs-12 margin-top text-left text-secondary config-box text-uppercase'>
+              <form class='form-inline'>
+                <h5>Config</h5>
+                <label>
+                  <input type="checkbox" name="units" value="weather" id="units-weather"><small> Weather pipe</small>
+                </label>
+              </form>
+            </div>
+            <div class='col-xs-12'>
+              <button type="buttons" class="btn margin-top" id="connect" onclick="connectPress();">Connect</button>
+            </div>
+          </div>
+          <div class='row margin-top'>
+            <div class='col-xs-12 margin-top'>
               <p><span class="glyphicon glyphicon-refresh" id='refresh-connect'></span></p>
             </div>
             <div class='col-xs-12'>
