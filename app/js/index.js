@@ -157,7 +157,9 @@ function setupPipe(i) {
     ipcRenderer.send('colour-update', i, cp.getRGB())
   });
 
+  $(pipeButtonUp[i]).unbind('click'); // unbind old function to prevent repeat on disconnect/connect
   $(pipeButtonUp[i]).on('click', function() {up(i) } );
+  $(pipeButtonDown[i]).unbind('click');
   $(pipeButtonDown[i]).on('click', function() {down(i) } );
   $(pipeButtonUp[i]).prop('disabled', false);
   $(pipeButtonDown[i]).prop('disabled', false);
@@ -272,15 +274,12 @@ function stockTicker() {
   var symbol = $('#stock-symbol').val()
   var id = $("#ticker")
 
-  if (cycleTask === null) {
-    pipeFuncButtons.prop('disabled', true);
-
-    id.css('color',"red")
-    id.text("stop")
+  var displayStock = (symbol) => {
     yahooFinance.snapshot({
       symbol: symbol,
       fields: ['l1', 'c1'],
     }, function (err, snapshot) {
+      console.log(snapshot);
       if (snapshot.change > 0) {
         ipcRenderer.send('colour-update', -1, {'r': 0, 'g': 255, 'b': 0} );
       } else {
@@ -288,27 +287,24 @@ function stockTicker() {
       }
 
       ipcRenderer.send('number-update', -1, Math.round(snapshot.lastTradePriceOnly));
-      setPipeh1(snapshot.lastTradePriceOnly)
+      setPipeh1(Math.round(snapshot.lastTradePriceOnly))
     });
+  }
+
+  if (cycleTask === null) {
+    pipeFuncButtons.prop('disabled', true);
+
+    id.css('color',"red")
+    id.text("stop")
 
     id.prop('disabled', false);
 
+    displayStock(symbol);
+
     cycleTask = setInterval( function() {
       symbol = $('#stock-symbol').val()
-      yahooFinance.snapshot({
-        symbol: symbol,
-        fields: ['l1', 'c1'],
-      }, function (err, snapshot) {
-        if (snapshot.change > 0) {
-          ipcRenderer.send('colour-update', -1, {'r': 0, 'g': 255, 'b': 0} );
-        } else {
-          ipcRenderer.send('colour-update', -1, {'r': 255, 'g': 0, 'b': 0} ) ;
-        }
-
-        ipcRenderer.send('number-update', -1, Math.round(snapshot.lastTradePriceOnly));
-        setPipeh1(snapshot.lastTradePriceOnly)
-      });
-    }, 10000)
+      displayStock(symbol);
+    }, 5000)
   } else {
     clearInterval(cycleTask)
     cycleTask = null

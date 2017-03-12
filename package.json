@@ -7,7 +7,8 @@
   "homepage": "http://www.nixiepipe.com",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "package": "electron-packager . --out=./release --all"
+    "package-mac": "electron-packager . --darwin",
+    "package-linux": "electron-packager . --linux"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "jquery": "^3.1.1",
     "nixiepipe": "^1.0.1",
     "node-geocoder": "^3.15.2",
+    "os-utils": "0.0.14",
     "serialport": "^4.0.6",
     "simple-color-picker": "^0.1.1",
     "yahoo-finance": "^0.2.16"
