@@ -14,7 +14,7 @@
 
 * [MacOS x64](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/Nixie.Pipe.Controller-darwin-x64.zip)
 * [Linux x32](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/Nixie.Pipe.Controller-linux-ia32.zip)
-* [Windows 64bit](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/Nixie.Pipe.Controller-win32-x64.zip); [_Windows 32bit_](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/Nixie.Pipe.Controller-win32-ia32.zip); 
+* [Windows 64bit](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/Nixie.Pipe.Controller-win32-x64.zip); [_Windows 32bit_](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/Nixie.Pipe.Controller-win32-ia32.zip)
 
 ## Run Source
 
