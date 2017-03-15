@@ -13,9 +13,8 @@
 ## Packaged Binaries
 
 * [MacOS x64](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/Nixie.Pipe.Controller-darwin-x64.zip)
-* [Linux x32](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/Nixie.Pipe.Controller-linux-ia32.zip)
-* Windows - Build coming soon.
-<!-- * [Windows 64bit](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/Nixie.Pipe.Controller-win32-x64.zip); [_Windows 32bit_](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/Nixie.Pipe.Controller-win32-ia32.zip)-->
+* [Linux x64](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/Nixie.Pipe.Controller-linux-x64.zip)
+* [Windows x64](https://github.com/tuna-f1sh/electron-nixiepipe/releases/download/1.1.1/NPController-win32.zip).
 
 ## Run Source
 
@@ -26,3 +25,5 @@ npm install
 npm install -g electron
 electron .
 ```
+
+The process is quite a bit more complicated on Windows as involves using `node-gyp-pre`. See the 'win32' branch.
