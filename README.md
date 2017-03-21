@@ -6,7 +6,7 @@
 
 # Usage
 
-1. Download and run _Nixie Pipe Controller_ app using the link for your system below. 
+1. Download and run _Nixie Pipe Controller_ app using the link for your system below. **You will also need to install the [FTDI D2XX Drivers for your system here](http://www.ftdichip.com/Drivers/D2XX.htm).**
 2. Once loaded, connect a Nixie Pipe _Master_ via USB. If using a clock _Master_, enter serial mode by pressing the left-hand touch button - the clock will change green entering countdown set mode (other _Master_ units will always operate in serial mode). 
 3. Press 'Connect' in the left column of the app. Once connected, the firmware version will be shown and the app functions can be used. _If using a Weather Pipe, tick 'Weather Pipe' prior to pressing 'Connect'_.
 
