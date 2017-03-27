@@ -7,9 +7,9 @@
   "homepage": "http://www.nixiepipe.com",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "package-mac": "electron-packager . --darwin",
-    "package-linux": "electron-packager . --linux",
-    "package-win": "electron-packager . --platform=win32 --arch=all",
+    "package-mac": "electron-packager . --darwin --overwrite",
+    "package-linux": "electron-packager . --linux --overwrite",
+    "package-win": "electron-packager . --platform=win32 --arch=x64 --overwrite --prune --electron-version=1.4.15",
     "install-win": "node-pre-gyp install --fallback-to-build --runtime=electron --target=1.4.15 --target_arch=x64 --directory=node_modules/serialport/ --update-binary --dist-url=https://atom.io/download/atom-shell",
     "postinstall": "cd node_modules/serialport && node-pre-gyp rebuild --target=1.4.15 --arch=x64 --dist-url=https://atom.io/download/atom-shell"
   },
