@@ -28,8 +28,8 @@ electron .
 
 The process is quite a bit more complicated on Windows as involves using `node-gyp-pre`. See the 'win32' branch.
 
-# Support and License
+# Attribution
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CFA7TQXNFURLQ)
 
-Licensed under GPL 3.0. I many of my projects open source so others can learn as I have but please attribute my creations if you derive use of them in your own work, by linking to www.jbrengineering.co.uk and/or the project page.
+I many of my projects open source so others can learn as I have but please attribute my creations if you derive use of them in your own work, by following the license terms, linking to www.jbrengineering.co.uk and/or the project page.
